@@ -212,8 +212,11 @@ export default {
     },
     handleClose(name) {
       this.routeList = this.routeList.filter((item) => item.name != name);
-      this.activeIndex = this.routeList.slice(-1)[0].name;
-      this.$router.push(this.routeList.slice(-1)[0].name);
+      if (this.$route.name === name) {
+        this.routeList = this.routeList.filter((item) => item.name != name);
+        this.activeIndex = this.routeList.slice(-1)[0].name;
+        this.$router.push(this.routeList.slice(-1)[0].name);
+      }
       localStorage.setItem("routeList", JSON.stringify(this.routeList));
     },
     unique(arr) {
@@ -271,6 +274,12 @@ export default {
         } else if (val.name == "User") {
           document.title = "用户列表";
           this.routeList.push({ name: val.name, con: "用户列表" });
+        } else if (val.name == "Detail") {
+          document.title = "商品详情";
+          this.routeList.push({ name: val.name, con: "商品详情" });
+        } else if (val.name == "Editor") {
+          document.title = "修改商品";
+          this.routeList.push({ name: val.name, con: "修改商品" });
         }
 
         let arr1 = this.unique(this.routeList);
@@ -292,6 +301,7 @@ export default {
 <style scoped lang="scss">
 .home {
   height: 100vh;
+  background-image: url("../assets/images/bg.gif");
   .el-header {
     background-color: #fff;
     color: #333;

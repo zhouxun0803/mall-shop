@@ -3,18 +3,18 @@
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item
-        v-for="(item, index) in BreadcrumbList"
+        v-for="(item, index) in BreadcrumbList.bread"
         :key="index"
         >{{ item }}</el-breadcrumb-item
       >
     </el-breadcrumb>
-    <h2>商品列表</h2>
+    <h2>{{BreadcrumbList.title}}</h2>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["BreadcrumbList"],
+  props: ["BreadcrumbList","title"],
   data() {
     return {};
   },
